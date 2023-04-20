@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     public GameManager gm;
     public float playerInitiativeNumber = 0;
+    public bool isRogue = false;
+    public bool isMage = false;
+    public bool isWarrior = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,21 @@ public class PlayerController : MonoBehaviour
     public void PlayerInitiative()
     {
         gm.Initiative();
-        playerInitiativeNumber = gm.initiativeNumber;
-        Debug.Log(playerInitiativeNumber);
+
+        if (isWarrior) {
+            playerInitiativeNumber = gm.initiativeNumber;
+            Debug.Log(playerInitiativeNumber);
+        }
+
+        if (isRogue) {
+            playerInitiativeNumber = gm.initiativeNumber + 5;
+            Debug.Log(playerInitiativeNumber);
+        }
+
+        if (isMage) {
+            playerInitiativeNumber = gm.initiativeNumber - 5;
+            Debug.Log(playerInitiativeNumber);
+        }
+        
     }
 }
