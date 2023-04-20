@@ -6,7 +6,9 @@ public class BattleManager : MonoBehaviour
 {
     public GameManager gm;
 
-    public float initiativeCheck = 0;
+    public bool toHit = false;
+
+    //public float initiativeCheck = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -18,5 +20,37 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ToHit() {
+        
+    }
+
+    public void EnemyAttack() {
+
+    }
+
+    public void RogueAttack() {
+
+    }
+
+    public void RogueSneakAttack() {
+
+    }
+
+    public void WarriorAttack() {
+
+    }
+
+    public void WarriorHeavyAttack() {
+
+    }
+
+    public void MageAttack() {
+
+    }
+
+    public void MageRangedAttack() {
+
     }
 }
