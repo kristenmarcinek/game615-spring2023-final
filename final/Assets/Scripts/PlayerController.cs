@@ -1,9 +1,13 @@
+//using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameManager gm;
+    public float playerInitiativeNumber = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +18,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayerInitiative()
+    {
+        gm.Initiative();
+        playerInitiativeNumber = gm.initiativeNumber;
+        Debug.Log(playerInitiativeNumber);
     }
 }
