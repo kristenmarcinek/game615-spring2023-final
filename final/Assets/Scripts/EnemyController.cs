@@ -7,8 +7,9 @@ public class EnemyController : MonoBehaviour
 {
     public GameManager gm;
     public bool inBattle = false;
-    public float enemyInitiativeNumber = 0;
-    public float enemyDodge = 0;
+    public int enemyInitiativeNumber = 0;
+    public int enemyDodge = 0;
+    
 
     // Start is called before the first frame update
     void Start()

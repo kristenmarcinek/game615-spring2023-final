@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameManager gm;
-    public float playerInitiativeNumber = 0;
+    public int playerInitiativeNumber = 0;
     public bool isRogue = false;
     public bool isMage = false;
     public bool isWarrior = false;
