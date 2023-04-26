@@ -41,6 +41,10 @@ public class PlayerController : MonoBehaviour
             playerInitiativeNumber = gm.initiativeNumber - 5;
             Debug.Log(playerInitiativeNumber);
         }
-        
+
+        else {
+            playerInitiativeNumber = gm.initiativeNumber;
+            Debug.Log(playerInitiativeNumber);
+        }
     }
 }
