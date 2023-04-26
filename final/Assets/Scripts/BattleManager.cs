@@ -56,7 +56,7 @@ public class BattleManager : MonoBehaviour
             }
         else
             {
-            attackHits = false;
+                attackHits = false;
             }
         
         Debug.Log(attackHits);
