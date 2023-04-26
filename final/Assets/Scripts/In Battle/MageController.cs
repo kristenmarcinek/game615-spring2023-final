@@ -9,6 +9,7 @@ public class MageController : MonoBehaviour
     public int mageHitMod = 40;
     public BattleManager bm;
     public int mageDamage = 0;
+    public int mageHealth = 20;
 
     // Start is called before the first frame update
     void Start()

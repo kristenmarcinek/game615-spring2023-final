@@ -6,6 +6,7 @@ public class WarriorController : MonoBehaviour
 {
     public GameManager gm;
     public int playerInitiativeNumber = 0;
+    public int warriorHealth = 40;
 
     // Start is called before the first frame update
     void Start()
