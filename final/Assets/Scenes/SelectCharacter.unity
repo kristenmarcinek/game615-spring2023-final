@@ -476,6 +476,7 @@ GameObject:
   - component: {fileID: 794159099}
   - component: {fileID: 794159098}
   - component: {fileID: 794159102}
+  - component: {fileID: 794159103}
   m_Layer: 0
   m_Name: EnemyPlaceholder
   m_TagString: Enemy
@@ -573,8 +574,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438d283534073a04c922d213fc3a8796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &794159103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794159097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c2d02fed04dd4459bf48b9eeba66d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   gm: {fileID: 3463959}
-  inBattle: 1
   enemyInitiativeNumber: 0
   enemyDodge: 0
 --- !u!1 &877548070
@@ -590,6 +602,7 @@ GameObject:
   - component: {fileID: 877548073}
   - component: {fileID: 877548072}
   - component: {fileID: 877548071}
+  - component: {fileID: 877548076}
   m_Layer: 0
   m_Name: EnemyPlaceholder (2)
   m_TagString: Enemy
@@ -609,10 +622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438d283534073a04c922d213fc3a8796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 3463959}
-  inBattle: 1
-  enemyInitiativeNumber: 0
-  enemyDodge: 0
 --- !u!65 &877548072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -691,6 +700,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &877548076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877548070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c2d02fed04dd4459bf48b9eeba66d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gm: {fileID: 3463959}
+  enemyInitiativeNumber: 0
+  enemyDodge: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +812,7 @@ GameObject:
   - component: {fileID: 1618613119}
   - component: {fileID: 1618613118}
   - component: {fileID: 1618613117}
+  - component: {fileID: 1618613122}
   m_Layer: 0
   m_Name: EnemyPlaceholder (1)
   m_TagString: Enemy
@@ -807,10 +832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438d283534073a04c922d213fc3a8796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 3463959}
-  inBattle: 1
-  enemyInitiativeNumber: 0
-  enemyDodge: 0
 --- !u!65 &1618613118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -889,6 +910,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1618613122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618613116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c2d02fed04dd4459bf48b9eeba66d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gm: {fileID: 3463959}
+  enemyInitiativeNumber: 0
+  enemyDodge: 0
 --- !u!1 &1995511383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,9 +1037,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 3463959}
   playerInitiativeNumber: 0
-  isRogue: 0
-  isMage: 0
-  isWarrior: 0
 --- !u!1 &2010515448
 GameObject:
   m_ObjectHideFlags: 0

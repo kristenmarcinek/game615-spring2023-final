@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BattleManager : MonoBehaviour
 {
     public GameManager gm;
+    public Initiative inOrder;
 
     public bool toHit = false;
 
-    public List<int> initiatives = new List<int>();
+    //public List<int> initiatives = new List<int>();
+    public List<GameObject> initiatives = new List<GameObject>();
 
     public int hitBase;
     public int turnPlayerHitMod;
@@ -28,12 +31,36 @@ public class BattleManager : MonoBehaviour
         selectedEnemyDodge = 20;
         attackHits = false;
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject enemy in enemies) {
-            initiatives.Add(enemy.GetComponent<EnemyAttack>().enemyInitiativeNumber);
-            print(initiatives);            
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < characters.Length; i++) {
+            Initiative inOrder = characters[i].GetComponent<Initiative>();
+            initiatives = characters.OrderByDescending(x => inOrder.initiativeNumber).ToList();
         }
+
+        foreach (GameObject i in initiatives)
+        {
+            Debug.Log("alsdflkasj;df" + i);
+        }
+
+        // GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        // for (int i = 0; i < enemies.Length; i++) {
+        //     EnemyAttack ea = enemies[i].GetComponent<EnemyAttack>();
+        //     if (ea != null) {
+        //         initiatives.Add(ea.enemyInitiativeNumber);
+        //     }         
+        // }
+
+        // foreach (int i in initiatives) {
+        //     Debug.Log("alsdflkasj;df" + i);
+        // }
+
+        // static int SortByInitiative(Initiative p1, Initiative p2) {
+        //     return p1.initiativeNumber.CompareTo(p2.initiativeNumber);
+        // }
+
+        // initiatives.Sort(SortByInitiative);
+
     }
 
     // Update is called once per frame
