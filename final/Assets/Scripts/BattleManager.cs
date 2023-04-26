@@ -32,7 +32,7 @@ public class BattleManager : MonoBehaviour
 
         foreach (GameObject enemy in enemies) {
             initiatives.Add(enemy.GetComponent<EnemyController>().enemyInitiativeNumber);
-            print(initiatives[0]);            
+            print(initiatives);            
         }
     }
 
