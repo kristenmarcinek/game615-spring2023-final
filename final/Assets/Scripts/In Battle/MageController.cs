@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class MageController : MonoBehaviour
 {
+    public GameManager gm;
+     public int playerInitiativeNumber = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gm.Initiative();
+
+        playerInitiativeNumber = gm.initiativeNumber - 5;
+        Debug.Log(playerInitiativeNumber);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void MageAttack() {
+
+    }
+
+    public void MageRangedAttack() {
+
     }
 }

@@ -31,7 +31,7 @@ public class BattleManager : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemy in enemies) {
-            initiatives.Add(enemy.GetComponent<EnemyController>().enemyInitiativeNumber);
+            initiatives.Add(enemy.GetComponent<EnemyAttack>().enemyInitiativeNumber);
             print(initiatives);            
         }
     }
@@ -58,33 +58,5 @@ public class BattleManager : MonoBehaviour
             }
         
         Debug.Log(attackHits);
-    }
-
-    public void EnemyAttack() {
-
-    }
-
-    public void RogueAttack() {
-
-    }
-
-    public void RogueSneakAttack() {
-
-    }
-
-    public void WarriorAttack() {
-
-    }
-
-    public void WarriorHeavyAttack() {
-
-    }
-
-    public void MageAttack() {
-
-    }
-
-    public void MageRangedAttack() {
-
     }
 }
