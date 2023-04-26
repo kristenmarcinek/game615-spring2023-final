@@ -5,7 +5,10 @@ using UnityEngine;
 public class MageController : MonoBehaviour
 {
     public GameManager gm;
-     public int playerInitiativeNumber = 0;
+    public int playerInitiativeNumber = 0;
+    public int mageHitMod = 40;
+    public BattleManager bm;
+    public int mageDamage = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,14 @@ public class MageController : MonoBehaviour
     }
 
     public void MageAttack() {
-
+        bm.turnPlayerHitMod = mageHitMod;
+        bm.ToHit();
+        if(bm.attackHits == true)
+        {
+            mageDamage = Random.Range(1,4);
+            //SUBTRACT HEALTH
+            bm.attackHits = false;
+        }
     }
 
     public void MageRangedAttack() {
