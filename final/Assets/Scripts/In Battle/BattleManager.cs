@@ -19,6 +19,9 @@ public class BattleManager : MonoBehaviour
     public int hitChance;
     public int hitRoll;
     public bool attackHits;
+    public MageController mc;
+    public WarriorController wc;
+    public RogueController rc;
 
     //public float initiativeCheck = 0;
 
@@ -68,7 +71,7 @@ public class BattleManager : MonoBehaviour
     {
         if (Input.GetKeyDown ("space"))
         {
-            ToHit();
+            rc.RogueLuckyStrike();
         }
     }
 

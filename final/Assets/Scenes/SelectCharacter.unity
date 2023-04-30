@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,6 +134,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8175a51583c5f3846ad60043621472d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &24929745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 24929747}
+  - component: {fileID: 24929746}
+  m_Layer: 0
+  m_Name: RogueControllerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &24929746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24929745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b599f5bad35559b48b45ed00e24a7b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gm: {fileID: 3463959}
+  playerInitiativeNumber: 0
+  rogueHealth: 30
+  rogueHitMod: 45
+  bm: {fileID: 1963777528}
+  rogueDamage: 0
+  multipliers:
+  - 0
+  - 0.5
+  - 2
+  - 3
+  damageMultiplier: 0
+--- !u!4 &24929747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24929745}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.739192, y: 2.4931788, z: -5.6271915}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &361263774
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +324,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361263774}
   m_CullTransparentMesh: 1
+--- !u!1 &364945512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 364945514}
+  - component: {fileID: 364945513}
+  m_Layer: 0
+  m_Name: WarriorControllerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &364945513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364945512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786ee0393ae4de049852aeed24be97a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gm: {fileID: 3463959}
+  playerInitiativeNumber: 0
+  warriorHealth: 40
+  bm: {fileID: 1963777528}
+  warriorDamage: 0
+  warriorHitMod: 30
+--- !u!4 &364945514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364945512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.739192, y: 2.4931788, z: -5.6271915}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &432829009
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +935,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1499974874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1499974876}
+  - component: {fileID: 1499974875}
+  m_Layer: 0
+  m_Name: MageControllerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1499974875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499974874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9bff0a55be06b468ed76a80431dfff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gm: {fileID: 3463959}
+  playerInitiativeNumber: 0
+  mageHitMod: 40
+  bm: {fileID: 1963777528}
+  mageDamage: 0
+  mageHealth: 20
+--- !u!4 &1499974876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499974874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.739192, y: 2.4931788, z: -5.6271915}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1618613116
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,6 +1126,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 3463959}
   initiativeNumber: 0
+--- !u!114 &1963777528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
+  m_PrefabInstance: {fileID: 8564076881978397184}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d856f4406f800e42badeb1a9cb16cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1995511383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,6 +1532,18 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 3463959}
+    - target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
+      propertyPath: mc
+      value: 
+      objectReference: {fileID: 1499974875}
+    - target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
+      propertyPath: rc
+      value: 
+      objectReference: {fileID: 24929746}
+    - target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
+      propertyPath: wc
+      value: 
+      objectReference: {fileID: 364945513}
     - target: {fileID: 8564076882577645031, guid: 97571006c4347b344881dfde87df13d2, type: 3}
       propertyPath: m_RootOrder
       value: 5

@@ -32,12 +32,40 @@ public class MageController : MonoBehaviour
         if(bm.attackHits == true)
         {
             mageDamage = Random.Range(1,4);
+            mageDamage = mageDamage + 1;
+            Debug.Log(mageDamage);
             //SUBTRACT HEALTH
+
             bm.attackHits = false;
+            mageDamage = 0;
+        }
+        else
+        {
+            //player missed
+            mageDamage = 0;
+            Debug.Log("Miss!");
         }
     }
 
     public void MageRangedAttack() {
+        bm.turnPlayerHitMod = mageHitMod;
+        bm.ToHit();
+        if(bm.attackHits == true)
+        {
+            mageDamage = Random.Range(1,12);
+            mageDamage = mageDamage + 5;
+            Debug.Log(mageDamage);
+            //SUBTRACT HEALTH
+
+            bm.attackHits = false;
+            mageDamage = 0;
+        }
+        else
+        {
+            //player missed
+            mageDamage = 0;
+            Debug.Log("Miss!");
+        }
 
     }
 }

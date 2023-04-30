@@ -7,6 +7,9 @@ public class WarriorController : MonoBehaviour
     public GameManager gm;
     public int playerInitiativeNumber = 0;
     public int warriorHealth = 40;
+    public BattleManager bm;
+    public int warriorDamage = 0;
+    public int warriorHitMod = 30;
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +27,47 @@ public class WarriorController : MonoBehaviour
     }
 
     public void WarriorAttack() {
+        bm.turnPlayerHitMod = warriorHitMod;
+        bm.ToHit();
 
+        if(bm.attackHits == true)
+        {
+            warriorDamage = Random.Range(1,8);
+            warriorDamage = warriorDamage + 3;
+            Debug.Log(warriorDamage);
+            //SUBTRACT HEALTH
+
+            bm.attackHits = false;
+            warriorDamage = 0;
+        }
+        else
+        {
+            //player missed
+            warriorDamage = 0;
+            Debug.Log("Miss!");
+        }
     }
 
     public void WarriorHeavyAttack() {
+        bm.turnPlayerHitMod = warriorHitMod - 20;
+        bm.ToHit();
 
+        if(bm.attackHits == true)
+        {
+            warriorDamage = Random.Range(1,12);
+            warriorDamage = warriorDamage + 5;
+            Debug.Log(warriorDamage);
+            //SUBTRACT HEALTH
+
+            bm.attackHits = false;
+            warriorDamage = 0;
+            warriorHitMod = 30;
+        }
+        else
+        {
+            //player missed
+            warriorDamage = 0;
+            Debug.Log("Miss!");
+        }
     }
 }
