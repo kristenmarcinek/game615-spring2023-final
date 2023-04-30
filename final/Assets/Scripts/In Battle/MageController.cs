@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MageController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class MageController : MonoBehaviour
     public BattleManager bm;
     public int mageDamage = 0;
     public int mageHealth = 20;
+    public TMP_Text incomingDamageBox;
+   // public int incomingDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +21,8 @@ public class MageController : MonoBehaviour
 
         playerInitiativeNumber = gm.initiativeNumber - 5;
         Debug.Log(playerInitiativeNumber);
+
+        //incomingDamageBox = GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
@@ -68,4 +73,21 @@ public class MageController : MonoBehaviour
         }
 
     }
+   // private void OnCollisionEnter(Collider other)
+    //{
+      //  if (other.CompareTag("projectile"))
+      //  {
+       //     incomingDamageBox.enabled = !incomingDamageBox.enabled;
+
+
+      //  }
+
+      //  if (other.CompareTag("Enemty"))
+     //   {
+      //      incomingDamageBox.enabled = !incomingDamageBox.enabled;
+     //   }
+
+
+  //  }
 }
+
