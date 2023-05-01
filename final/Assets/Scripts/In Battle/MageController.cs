@@ -82,7 +82,7 @@ public class MageController : MonoBehaviour
 
       //  }
 
-      //  if (other.CompareTag("Enemty"))
+      //  if (other.CompareTag("Enemy"))
      //   {
       //      incomingDamageBox.enabled = !incomingDamageBox.enabled;
      //   }
