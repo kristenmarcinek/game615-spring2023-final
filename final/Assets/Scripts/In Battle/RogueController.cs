@@ -10,6 +10,7 @@ public class RogueController : MonoBehaviour
     public int rogueHitMod = 45;
     public BattleManager bm;
     public float rogueDamage = 0;
+    public int rogueDamageInt = 0;
     public float[] multipliers = {0, .5f, 2, 3};
     public float damageMultiplier;
 
@@ -37,6 +38,7 @@ public class RogueController : MonoBehaviour
             rogueDamage = Random.Range(1,6);
             rogueDamage = rogueDamage + 3;
             Debug.Log(rogueDamage);
+            
             //SUBTRACT HEALTH
 
             bm.attackHits = false;
@@ -60,6 +62,8 @@ public class RogueController : MonoBehaviour
             damageMultiplier = multipliers[Random.Range(0,multipliers.Length)];
             rogueDamage = (rogueDamage + 3) * damageMultiplier;
             Debug.Log(rogueDamage);
+
+            rogueDamageInt = Mathf.FloorToInt(rogueDamage);
             //SUBTRACT HEALTH
 
             bm.attackHits = false;

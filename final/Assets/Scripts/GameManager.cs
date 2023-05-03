@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int initiativeNumber = 0;
+    public SelectionScript selectedUnit;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,27 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray) == false)
+            {
+                if (selectedUnit != null)
+                {
+                    selectedUnit.selected = false;
+                    print("Is selected");
+                    selectedUnit.bodyRend.material.color = selectedUnit.defaultColor;
+
+                    selectedUnit = null;
+                }
+            }
+        }
+    }
+
+    public void SelectUnit(SelectionScript unit) {
+        selectedUnit = unit;
+
+         Vector3 pos = unit.transform.position + Vector3.up * 2.5f;
     }
 
     public void Initiative()

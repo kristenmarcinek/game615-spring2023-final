@@ -31,7 +31,7 @@ public class BattleManager : MonoBehaviour
 
         hitBase = 50;
         turnPlayerHitMod = 40;
-        selectedEnemyDodge = 20;
+        //selectedEnemyDodge = 20;
         attackHits = false;
 
         GameObject[] characters = GameObject.FindGameObjectsWithTag("Enemy");
@@ -76,7 +76,8 @@ public class BattleManager : MonoBehaviour
     }
 
     public void ToHit() {
-        hitChance = hitBase + turnPlayerHitMod - selectedEnemyDodge;
+        hitChance = hitBase + turnPlayerHitMod - this.gm.selectedUnit.ebc.enemyDodge;
+        print(hitChance);
         hitRoll = Random.Range(1, 100);
         if (hitRoll <= hitChance)
             {
