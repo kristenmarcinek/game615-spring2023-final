@@ -10,7 +10,7 @@ public class MageController : MonoBehaviour
     public int mageHitMod = 40;
     public BattleManager bm;
     public int mageDamage = 0;
-    public int mageHealth = 20;
+    public int mageHP = 20;
     public TMP_Text incomingDamageBox;
    // public int incomingDamage;
 
@@ -41,7 +41,8 @@ public class MageController : MonoBehaviour
             mageDamage = Random.Range(1,4);
             mageDamage = mageDamage + 1;
             Debug.Log(mageDamage);
-            //SUBTRACT HEALTH
+            this.gm.selectedUnit.ebc.skellyHP = this.gm.selectedUnit.ebc.skellyHP - mageDamage;
+            print(this.gm.selectedUnit.ebc.skellyHP);
 
             bm.attackHits = false;
             mageDamage = 0;
@@ -62,7 +63,8 @@ public class MageController : MonoBehaviour
             mageDamage = Random.Range(1,12);
             mageDamage = mageDamage + 5;
             Debug.Log(mageDamage);
-            //SUBTRACT HEALTH
+            this.gm.selectedUnit.ebc.skellyHP = this.gm.selectedUnit.ebc.skellyHP - mageDamage;
+            print(this.gm.selectedUnit.ebc.skellyHP);
 
             bm.attackHits = false;
             mageDamage = 0;

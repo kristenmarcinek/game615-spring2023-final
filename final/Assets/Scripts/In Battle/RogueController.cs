@@ -39,7 +39,9 @@ public class RogueController : MonoBehaviour
             rogueDamage = rogueDamage + 3;
             Debug.Log(rogueDamage);
             
-            //SUBTRACT HEALTH
+            rogueDamageInt = Mathf.FloorToInt(rogueDamage);
+            this.gm.selectedUnit.ebc.skellyHP = this.gm.selectedUnit.ebc.skellyHP - rogueDamageInt;
+            print(this.gm.selectedUnit.ebc.skellyHP);
 
             bm.attackHits = false;
             rogueDamage = 0;
@@ -53,7 +55,7 @@ public class RogueController : MonoBehaviour
     }
 
     public void RogueLuckyStrike() {
-         bm.turnPlayerHitMod = rogueHitMod;
+        bm.turnPlayerHitMod = rogueHitMod;
         bm.ToHit();
 
         if(bm.attackHits == true)
@@ -64,7 +66,8 @@ public class RogueController : MonoBehaviour
             Debug.Log(rogueDamage);
 
             rogueDamageInt = Mathf.FloorToInt(rogueDamage);
-            //SUBTRACT HEALTH
+            this.gm.selectedUnit.ebc.skellyHP = this.gm.selectedUnit.ebc.skellyHP - rogueDamageInt;
+            print(this.gm.selectedUnit.ebc.skellyHP);
 
             bm.attackHits = false;
             rogueDamage = 0;

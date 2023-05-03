@@ -35,7 +35,8 @@ public class WarriorController : MonoBehaviour
             warriorDamage = Random.Range(1,8);
             warriorDamage = warriorDamage + 3;
             Debug.Log(warriorDamage);
-            //SUBTRACT HEALTH
+            this.gm.selectedUnit.ebc.skellyHP = this.gm.selectedUnit.ebc.skellyHP - warriorDamage;
+            print(this.gm.selectedUnit.ebc.skellyHP);
 
             bm.attackHits = false;
             warriorDamage = 0;
@@ -57,7 +58,8 @@ public class WarriorController : MonoBehaviour
             warriorDamage = Random.Range(1,12);
             warriorDamage = warriorDamage + 5;
             Debug.Log(warriorDamage);
-            //SUBTRACT HEALTH
+            this.gm.selectedUnit.ebc.skellyHP = this.gm.selectedUnit.ebc.skellyHP - warriorDamage;
+            print(this.gm.selectedUnit.ebc.skellyHP);
 
             bm.attackHits = false;
             warriorDamage = 0;

@@ -18,27 +18,26 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray) == false)
-            {
-                if (selectedUnit != null)
-                {
-                    selectedUnit.selected = false;
-                    print("Is selected");
-                    selectedUnit.bodyRend.material.color = selectedUnit.defaultColor;
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //     if(Physics.Raycast(ray) == false)
+        //     {
+        //         if (selectedUnit != null)
+        //         {
+        //             selectedUnit.selected = false;
+        //             selectedUnit.bodyRend.material.color = selectedUnit.defaultColor;
 
-                    selectedUnit = null;
-                }
-            }
-        }
+        //             selectedUnit = null;
+        //         }
+        //     }
+        // }
     }
 
     public void SelectUnit(SelectionScript unit) {
         selectedUnit = unit;
 
-         Vector3 pos = unit.transform.position + Vector3.up * 2.5f;
+        Vector3 pos = unit.transform.position + Vector3.up * 2.5f;
     }
 
     public void Initiative()

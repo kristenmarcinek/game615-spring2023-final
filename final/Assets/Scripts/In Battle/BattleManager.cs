@@ -22,13 +22,14 @@ public class BattleManager : MonoBehaviour
     public MageController mc;
     public WarriorController wc;
     public RogueController rc;
+    public float turnTimer;
+    string characterBools = "First";
 
     //public float initiativeCheck = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-
         hitBase = 50;
         turnPlayerHitMod = 40;
         //selectedEnemyDodge = 20;
@@ -63,19 +64,44 @@ public class BattleManager : MonoBehaviour
         // }
 
         // initiatives.Sort(SortByInitiative);
+        
 
+        switch(characterBools) {
+            case "First":
+                initiatives[0].active = true;
+                initiatives[1].active = false;
+                initiatives[2].active = false;
+                initiatives[3].active = false;
+                break;
+            case "Second":
+                initiatives[0].active = false;
+                initiatives[1].active = true;
+                initiatives[2].active = false;
+                initiatives[3].active = false;
+                break;
+            case "Third":
+                initiatives[0].active = false;
+                initiatives[1].active = false;
+                initiatives[2].active = true;
+                initiatives[3].active = false;
+                break;
+            case "Fourth":
+                initiatives[0].active = false;
+                initiatives[1].active = false;
+                initiatives[2].active = false;
+                initiatives[3].active = true;
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown ("space"))
-        {
-            rc.RogueLuckyStrike();
-        }
+        
     }
 
     public void ToHit() {
+        print(this.gm.selectedUnit.ebc.enemyDodge);
         hitChance = hitBase + turnPlayerHitMod - this.gm.selectedUnit.ebc.enemyDodge;
         print(hitChance);
         hitRoll = Random.Range(1, 100);
@@ -89,5 +115,33 @@ public class BattleManager : MonoBehaviour
             }
         
         Debug.Log(attackHits);
+    }
+
+    IEnumerator TurnOrder() {
+
+        if(characterBools.Contains("First")) {
+            // stuff here
+            characterBools = "Second";
+        }
+        
+        else if(characterBools.Contains("Second")) {
+            // stuff here
+            characterBools = "Third";
+        }
+
+        else if(characterBools.Contains("Third")) {
+            // stuff here
+            characterBools = "Fourth";
+        }
+
+        else if(characterBools.Contains("Fourth")) {
+            // stuff here
+            characterBools = "First";
+        }
+
+        else {
+            // ends battle
+        }
+        yield return new WaitForSeconds(15);
     }
 }
