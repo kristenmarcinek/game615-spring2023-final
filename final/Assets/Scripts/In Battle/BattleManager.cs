@@ -6,7 +6,7 @@ using System.Linq;
 public class BattleManager : MonoBehaviour
 {
     public GameManager gm;
-    public Initiative inOrder;
+    Initiative inOrder;
 
     public bool toHit = false;
 

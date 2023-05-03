@@ -5,7 +5,7 @@ using UnityEngine;
 public class RogueController : MonoBehaviour
 {
     public GameManager gm;
-    public int playerInitiativeNumber = 0;
+    // public int playerInitiativeNumber = 0;
     public int rogueHealth = 30;
     public int rogueHitMod = 45;
     public BattleManager bm;
@@ -16,10 +16,10 @@ public class RogueController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gm.Initiative();
+        // gm.Initiative();
 
-        playerInitiativeNumber = gm.initiativeNumber + 5;
-        Debug.Log(playerInitiativeNumber);
+        // playerInitiativeNumber = gm.initiativeNumber + 5;
+        // Debug.Log(playerInitiativeNumber);
     }
 
     // Update is called once per frame

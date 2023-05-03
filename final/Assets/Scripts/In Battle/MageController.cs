@@ -6,7 +6,7 @@ using TMPro;
 public class MageController : MonoBehaviour
 {
     public GameManager gm;
-    public int playerInitiativeNumber = 0;
+    // public int playerInitiativeNumber = 0;
     public int mageHitMod = 40;
     public BattleManager bm;
     public int mageDamage = 0;
@@ -17,10 +17,10 @@ public class MageController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gm.Initiative();
+        // gm.Initiative();
 
-        playerInitiativeNumber = gm.initiativeNumber - 5;
-        Debug.Log(playerInitiativeNumber);
+        // playerInitiativeNumber = gm.initiativeNumber - 5;
+        // Debug.Log(playerInitiativeNumber);
 
         //incomingDamageBox = GetComponent<TMP_Text>();
     }
@@ -32,6 +32,8 @@ public class MageController : MonoBehaviour
     }
 
     public void MageAttack() {
+        print("Button clicked!");
+
         bm.turnPlayerHitMod = mageHitMod;
         bm.ToHit();
         if(bm.attackHits == true)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class WarriorController : MonoBehaviour
 {
     public GameManager gm;
-    public int playerInitiativeNumber = 0;
+    // public int playerInitiativeNumber = 0;
     public int warriorHealth = 40;
     public BattleManager bm;
     public int warriorDamage = 0;
@@ -14,10 +14,10 @@ public class WarriorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gm.Initiative();
+        // gm.Initiative();
 
-        playerInitiativeNumber = gm.initiativeNumber;
-        Debug.Log(playerInitiativeNumber);
+        // playerInitiativeNumber = gm.initiativeNumber;
+        // Debug.Log(playerInitiativeNumber);
     }
 
     // Update is called once per frame
