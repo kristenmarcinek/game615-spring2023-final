@@ -13,6 +13,7 @@ public class MageController : MonoBehaviour
     public int mageHP = 20;
     public TMP_Text incomingDamageBox;
    // public int incomingDamage;
+    
 
     // Start is called before the first frame update
     void Start()

@@ -6,7 +6,7 @@ using System.Linq;
 public class BattleManager : MonoBehaviour
 {
     public GameManager gm;
-    Initiative inOrder;
+    //Initiative inOrder;
 
     public bool toHit = false;
 
@@ -24,21 +24,34 @@ public class BattleManager : MonoBehaviour
     public RogueController rc;
     public float turnTimer;
     string characterBools = "First";
+    public GameObject MageUI;
+    public GameObject RogueUI;
+    public GameObject WarriorUI;
+    GameObject x;
 
     //public float initiativeCheck = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        MageUI = GameObject.Find("MageUI");
+        RogueUI = GameObject.Find("RogueUI");
+        WarriorUI = GameObject.Find("WarriorUI");
+
+        MageUI.SetActive(false);
+        WarriorUI.SetActive(false);
+        RogueUI.SetActive(false);
+
         hitBase = 50;
         turnPlayerHitMod = 40;
         //selectedEnemyDodge = 20;
         attackHits = false;
 
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
         for (int i = 0; i < characters.Length; i++) {
-            Initiative inOrder = characters[i].GetComponent<Initiative>();
-            initiatives = characters.OrderByDescending(x => inOrder.initiativeNumber).ToList();
+            //Initiative inOrder = characters[i].GetComponent<Initiative>();
+            x = characters[i];
+            initiatives = characters.OrderByDescending(x => x.GetComponent<Initiative>().initiativeNumber).ToList();
         }
 
         foreach (GameObject i in initiatives)
@@ -68,36 +81,40 @@ public class BattleManager : MonoBehaviour
 
         switch(characterBools) {
             case "First":
-                initiatives[0].active = true;
-                initiatives[1].active = false;
-                initiatives[2].active = false;
-                initiatives[3].active = false;
+                initiatives[0].GetComponent<Initiative>().activeTurn = true;
+                print("wooooo " + initiatives[0].GetComponent<Initiative>().GetComponent<Initiative>().activeTurn);
+                initiatives[1].GetComponent<Initiative>().activeTurn = false;
+                initiatives[2].GetComponent<Initiative>().activeTurn = false;
+                initiatives[3].GetComponent<Initiative>().activeTurn = false;
                 break;
             case "Second":
-                initiatives[0].active = false;
-                initiatives[1].active = true;
-                initiatives[2].active = false;
-                initiatives[3].active = false;
+                initiatives[0].GetComponent<Initiative>().activeTurn = false;
+                initiatives[1].GetComponent<Initiative>().activeTurn = true;
+                initiatives[2].GetComponent<Initiative>().activeTurn = false;
+                initiatives[3].GetComponent<Initiative>().activeTurn = false;
                 break;
             case "Third":
-                initiatives[0].active = false;
-                initiatives[1].active = false;
-                initiatives[2].active = true;
-                initiatives[3].active = false;
+                initiatives[0].GetComponent<Initiative>().activeTurn = false;
+                initiatives[1].GetComponent<Initiative>().activeTurn = false;
+                initiatives[2].GetComponent<Initiative>().activeTurn = true;
+                initiatives[3].GetComponent<Initiative>().activeTurn = false;
                 break;
             case "Fourth":
-                initiatives[0].active = false;
-                initiatives[1].active = false;
-                initiatives[2].active = false;
-                initiatives[3].active = true;
+                initiatives[0].GetComponent<Initiative>().activeTurn = false;
+                initiatives[1].GetComponent<Initiative>().activeTurn = false;
+                initiatives[2].GetComponent<Initiative>().activeTurn = false;
+                initiatives[3].GetComponent<Initiative>().activeTurn = true;
                 break;
         }
+
+        initiatives[0].GetComponent<Initiative>().activeTurn = true;
+        print(initiatives[0].gameObject.name + " the name");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        StartCoroutine(TurnOrder());
     }
 
     public void ToHit() {
@@ -118,30 +135,101 @@ public class BattleManager : MonoBehaviour
     }
 
     IEnumerator TurnOrder() {
-
         if(characterBools.Contains("First")) {
-            // stuff here
+            if(initiatives[0].gameObject.name == "MageControllerObject") {
+                MageUI.SetActive(true);
+                WarriorUI.SetActive(false);
+                RogueUI.SetActive(false);
+            }
+
+            if(initiatives[0].gameObject.name == "WarriorControllerObject") {
+                MageUI.SetActive(false);
+                WarriorUI.SetActive(true);
+                RogueUI.SetActive(false);
+            }
+
+            if(initiatives[0].gameObject.name == "RogueControllerObject") {
+                MageUI.SetActive(false);
+                WarriorUI.SetActive(false);
+                RogueUI.SetActive(true);
+            }
+            initiatives[0].GetComponent<Initiative>().activeTurn = false;
             characterBools = "Second";
         }
         
         else if(characterBools.Contains("Second")) {
-            // stuff here
+            if(initiatives[1].gameObject.name == "MageControllerObject") {
+                MageUI.SetActive(true);
+                WarriorUI.SetActive(false);
+                RogueUI.SetActive(false);
+            }
+
+            if(initiatives[1].gameObject.name == "WarriorControllerObject") {
+                MageUI.SetActive(false);
+                WarriorUI.SetActive(true);
+                RogueUI.SetActive(false);
+            }
+
+            if(initiatives[1].gameObject.name == "RogueControllerObject") {
+                MageUI.SetActive(false);
+                WarriorUI.SetActive(false);
+                RogueUI.SetActive(true);
+            }
+
+            initiatives[1].GetComponent<Initiative>().activeTurn = false;
             characterBools = "Third";
         }
 
         else if(characterBools.Contains("Third")) {
-            // stuff here
+            if(initiatives[2].gameObject.name == "MageControllerObject") {
+                MageUI.SetActive(true);
+                WarriorUI.SetActive(false);
+                RogueUI.SetActive(false);
+            }
+
+            if(initiatives[2].gameObject.name == "WarriorControllerObject") {
+                MageUI.SetActive(false);
+                WarriorUI.SetActive(true);
+                RogueUI.SetActive(false);
+            }
+
+            if(initiatives[2].gameObject.name == "RogueControllerObject") {
+                MageUI.SetActive(false);
+                WarriorUI.SetActive(false);
+                RogueUI.SetActive(true);
+            }
+
+            initiatives[2].GetComponent<Initiative>().activeTurn = false;
             characterBools = "Fourth";
         }
 
         else if(characterBools.Contains("Fourth")) {
-            // stuff here
+            if(initiatives[3].gameObject.name == "MageControllerObject") {
+                MageUI.SetActive(true);
+                WarriorUI.SetActive(false);
+                RogueUI.SetActive(false);
+            }
+
+            if(initiatives[3].gameObject.name == "WarriorControllerObject") {
+                MageUI.SetActive(false);
+                WarriorUI.SetActive(true);
+                RogueUI.SetActive(false);
+            }
+
+            if(initiatives[3].gameObject.name == "RogueControllerObject") {
+                MageUI.SetActive(false);
+                WarriorUI.SetActive(false);
+                RogueUI.SetActive(true);
+            }
+
+            initiatives[3].GetComponent<Initiative>().activeTurn = false;
             characterBools = "First";
         }
 
         else {
-            // ends battle
+           StopCoroutine(TurnOrder());
         }
-        yield return new WaitForSeconds(15);
+
+        yield return new WaitForSeconds(15.0f);
     }
 }
