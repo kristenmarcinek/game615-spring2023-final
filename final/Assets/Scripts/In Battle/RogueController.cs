@@ -6,7 +6,7 @@ public class RogueController : MonoBehaviour
 {
     public GameManager gm;
     // public int playerInitiativeNumber = 0;
-    public int rogueHealth = 30;
+    public int rogueHP = 30;
     public int rogueHitMod = 45;
     public BattleManager bm;
     public float rogueDamage = 0;

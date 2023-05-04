@@ -22,6 +22,7 @@ public class BattleManager : MonoBehaviour
     public MageController mc;
     public WarriorController wc;
     public RogueController rc;
+    public EnemyBattleController ebc;
     public float turnTimer;
     // string characterBools = "First";
     public GameObject MageUI;
@@ -31,7 +32,7 @@ public class BattleManager : MonoBehaviour
 
     public float initiativeCheck;
     public bool checkIsRunning = false;
-    public bool turnEnd = false;
+    // public bool turnEnd = false;
 
     // Start is called before the first frame update
     void Start()
@@ -123,6 +124,9 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         // StartCoroutine(TurnOrder());
 
         if (initiatives[0].GetComponent<Initiative>().activeTurn)
@@ -134,7 +138,7 @@ public class BattleManager : MonoBehaviour
 
             StartCoroutine(FirstTurn());
 
-            if (initiativeCheck <= 0 || turnEnd)
+            if (initiativeCheck <= 0)
             {
                 // print("Checking coroutines");
                 StopCoroutine(FirstTurn());
@@ -156,7 +160,7 @@ public class BattleManager : MonoBehaviour
 
             StartCoroutine(SecondTurn());
 
-            if (initiativeCheck <= 0 || turnEnd)
+            if (initiativeCheck <= 0)
             {
                 StopCoroutine(SecondTurn());
                 checkIsRunning = false;
@@ -175,7 +179,7 @@ public class BattleManager : MonoBehaviour
 
             StartCoroutine(ThirdTurn());
 
-            if (initiativeCheck <= 0 || turnEnd)
+            if (initiativeCheck <= 0)
             {
                 StopCoroutine(ThirdTurn());
                 checkIsRunning = false;
@@ -194,7 +198,7 @@ public class BattleManager : MonoBehaviour
 
             StartCoroutine(FourthTurn());
 
-            if (initiativeCheck <= 0 || turnEnd)
+            if (initiativeCheck <= 0)
             {
                 StopCoroutine(FourthTurn());
                 checkIsRunning = false;
@@ -345,6 +349,14 @@ public class BattleManager : MonoBehaviour
             WarriorUI.SetActive(false);
             RogueUI.SetActive(true);
         }
+         if (initiatives[0].gameObject.name == "Skelly")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+            ebc.EnemiesAttack();
+            
+        }
 
         yield return null;
     }
@@ -371,6 +383,14 @@ public class BattleManager : MonoBehaviour
             WarriorUI.SetActive(false);
             RogueUI.SetActive(true);
         }
+         if (initiatives[1].gameObject.name == "Skelly")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+            ebc.EnemiesAttack();
+            
+        }
         yield return null;
     }
 
@@ -395,6 +415,14 @@ public class BattleManager : MonoBehaviour
             MageUI.SetActive(false);
             WarriorUI.SetActive(false);
             RogueUI.SetActive(true);
+        }
+         if (initiatives[2].gameObject.name == "Skelly")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+            ebc.EnemiesAttack();
+            
         }
         yield return null;
     }
@@ -421,6 +449,14 @@ public class BattleManager : MonoBehaviour
             WarriorUI.SetActive(false);
             RogueUI.SetActive(true);
         }
+         if (initiatives[3].gameObject.name == "Skelly")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+            ebc.EnemiesAttack();
+            
+        }
         yield return null;
     }
 
@@ -438,19 +474,19 @@ public class BattleManager : MonoBehaviour
 
     public void TurnEnd() 
     {
-        StartCoroutine(EndOfTurn());
+        initiativeCheck = 0;
     }
 
-    IEnumerator EndOfTurn()
-    {
-        turnEnd = true;
+    // IEnumerator EndOfTurn()
+    // {
+    //     turnEnd = true;
 
-        yield return new WaitForSeconds(0.5f);
+    //     yield return new WaitForSeconds(0.5f);
 
-        turnEnd = false;
+    //     turnEnd = false;
 
-        yield return null;
+    //     yield return null;
 
-        print("Clicked button");
-    }
+    //     print("Clicked button");
+    // }
 }

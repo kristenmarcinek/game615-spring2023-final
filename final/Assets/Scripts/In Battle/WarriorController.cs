@@ -6,7 +6,7 @@ public class WarriorController : MonoBehaviour
 {
     public GameManager gm;
     // public int playerInitiativeNumber = 0;
-    public int warriorHealth = 40;
+    public int warriorHP = 40;
     public BattleManager bm;
     public int warriorDamage = 0;
     public int warriorHitMod = 30;
