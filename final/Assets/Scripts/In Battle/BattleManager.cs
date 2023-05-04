@@ -147,7 +147,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        else if (initiatives[1].GetComponent<Initiative>().activeTurn)
+        if (initiatives[1].GetComponent<Initiative>().activeTurn)
         {
             print("Second coroutine");
             checkIsRunning = true;
@@ -166,13 +166,13 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        else if (initiatives[2].GetComponent<Initiative>().activeTurn)
+        if (initiatives[2].GetComponent<Initiative>().activeTurn)
         {
             print("Third coroutine");
             checkIsRunning = true;
             StartTimer();
 
-            StartCoroutine(SecondTurn());
+            StartCoroutine(ThirdTurn());
 
             if (initiativeCheck <= 0)
             {
@@ -181,6 +181,25 @@ public class BattleManager : MonoBehaviour
                 initiativeCheck = 15;
                 initiatives[2].GetComponent<Initiative>().activeTurn = false;
                 initiatives[3].GetComponent<Initiative>().activeTurn = true;
+                // characterBools = "Third";
+            }
+        }
+
+        if (initiatives[3].GetComponent<Initiative>().activeTurn)
+        {
+            print("Fourth coroutine");
+            checkIsRunning = true;
+            StartTimer();
+
+            StartCoroutine(FourthTurn());
+
+            if (initiativeCheck <= 0)
+            {
+                StopCoroutine(FourthTurn());
+                checkIsRunning = false;
+                initiativeCheck = 15;
+                initiatives[3].GetComponent<Initiative>().activeTurn = false;
+                initiatives[0].GetComponent<Initiative>().activeTurn = true;
                 // characterBools = "Third";
             }
         }
@@ -371,6 +390,31 @@ public class BattleManager : MonoBehaviour
         }
 
         if (initiatives[2].gameObject.name == "RogueControllerObject")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(true);
+        }
+        yield return null;
+    }
+
+    IEnumerator FourthTurn()
+    {
+        if (initiatives[3].gameObject.name == "MageControllerObject")
+        {
+            MageUI.SetActive(true);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+        }
+
+        if (initiatives[3].gameObject.name == "WarriorControllerObject")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(true);
+            RogueUI.SetActive(false);
+        }
+
+        if (initiatives[3].gameObject.name == "RogueControllerObject")
         {
             MageUI.SetActive(false);
             WarriorUI.SetActive(false);
