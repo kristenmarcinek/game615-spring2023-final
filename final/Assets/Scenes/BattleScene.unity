@@ -972,6 +972,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: EndOfTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &443536515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,6 +1372,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: EndOfTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &526023207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2152,6 +2176,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: EndOfTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &889479779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2767,9 +2803,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 449001244}
-        m_TargetAssemblyTypeName: WarriorController, Assembly-CSharp
-        m_MethodName: WarriorAttack
+      - m_Target: {fileID: 1597292914}
+        m_TargetAssemblyTypeName: RogueController, Assembly-CSharp
+        m_MethodName: RogueAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: EndOfTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4000,9 +4048,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7664993289171571079, guid: bf6e8cd83ec8af14aa636a6f33a174b8, type: 3}
-        m_TargetAssemblyTypeName: WarriorController, Assembly-CSharp
-        m_MethodName: WarriorHeavyAttack
+      - m_Target: {fileID: 4361252806976327670, guid: 9380b303a148bfc408d8310417aa9270, type: 3}
+        m_TargetAssemblyTypeName: RogueController, Assembly-CSharp
+        m_MethodName: RogueLuckyStrike
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4012,6 +4060,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: EndOfTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1669870257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4137,6 +4197,18 @@ MonoBehaviour:
       - m_Target: {fileID: 749251878}
         m_TargetAssemblyTypeName: MageController, Assembly-CSharp
         m_MethodName: MageAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: EndOfTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -31,6 +31,7 @@ public class BattleManager : MonoBehaviour
 
     public float initiativeCheck;
     public bool checkIsRunning = false;
+    public bool turnEnd = false;
 
     // Start is called before the first frame update
     void Start()
@@ -126,36 +127,36 @@ public class BattleManager : MonoBehaviour
 
         if (initiatives[0].GetComponent<Initiative>().activeTurn)
         {
-            print("This coroutine worked?");
+            // print("This coroutine worked?");
             checkIsRunning = true;
             StartTimer();
-            print(initiativeCheck + "why is it 0");
+            // print(initiativeCheck + "why is it 0");
 
             StartCoroutine(FirstTurn());
 
-            if (initiativeCheck <= 0)
+            if (initiativeCheck <= 0 || turnEnd)
             {
-                print("Checking coroutines");
+                // print("Checking coroutines");
                 StopCoroutine(FirstTurn());
                 checkIsRunning = false;
                 initiativeCheck = 15;
                 initiatives[0].GetComponent<Initiative>().activeTurn = false;
                 initiatives[1].GetComponent<Initiative>().activeTurn = true;
-                print("first turn is " + initiatives[0].GetComponent<Initiative>().activeTurn);
-                print("second turn is " + initiatives[1].GetComponent<Initiative>().activeTurn);
+                // print("first turn is " + initiatives[0].GetComponent<Initiative>().activeTurn);
+                // print("second turn is " + initiatives[1].GetComponent<Initiative>().activeTurn);
                 // characterBools = "Second";
             }
         }
 
         if (initiatives[1].GetComponent<Initiative>().activeTurn)
         {
-            print("Second coroutine");
+            // print("Second coroutine");
             checkIsRunning = true;
             StartTimer();
 
             StartCoroutine(SecondTurn());
 
-            if (initiativeCheck <= 0)
+            if (initiativeCheck <= 0 || turnEnd)
             {
                 StopCoroutine(SecondTurn());
                 checkIsRunning = false;
@@ -168,13 +169,13 @@ public class BattleManager : MonoBehaviour
 
         if (initiatives[2].GetComponent<Initiative>().activeTurn)
         {
-            print("Third coroutine");
+            // print("Third coroutine");
             checkIsRunning = true;
             StartTimer();
 
             StartCoroutine(ThirdTurn());
 
-            if (initiativeCheck <= 0)
+            if (initiativeCheck <= 0 || turnEnd)
             {
                 StopCoroutine(ThirdTurn());
                 checkIsRunning = false;
@@ -187,13 +188,13 @@ public class BattleManager : MonoBehaviour
 
         if (initiatives[3].GetComponent<Initiative>().activeTurn)
         {
-            print("Fourth coroutine");
+            // print("Fourth coroutine");
             checkIsRunning = true;
             StartTimer();
 
             StartCoroutine(FourthTurn());
 
-            if (initiativeCheck <= 0)
+            if (initiativeCheck <= 0 || turnEnd)
             {
                 StopCoroutine(FourthTurn());
                 checkIsRunning = false;
@@ -430,8 +431,26 @@ public class BattleManager : MonoBehaviour
             if (initiativeCheck > 0)
             {
                 initiativeCheck -= Time.deltaTime;
-                print(initiativeCheck + " timer");
+                // print(initiativeCheck + " timer");
             }
         }
+    }
+
+    public void TurnEnd() 
+    {
+        StartCoroutine(EndOfTurn());
+    }
+
+    IEnumerator EndOfTurn()
+    {
+        turnEnd = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        turnEnd = false;
+
+        yield return null;
+
+        print("Clicked button");
     }
 }
