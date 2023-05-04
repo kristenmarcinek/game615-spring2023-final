@@ -570,7 +570,7 @@ PrefabInstance:
     - target: {fileID: 8298419336964408149, guid: 05bf9e84725f1a5419b50d93d21f2dd4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b044fe54d00d94f4ba451444d9f1f16c, type: 2}
+      objectReference: {fileID: 2100000, guid: 4713d54158acb20428fdf673af76fc66, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05bf9e84725f1a5419b50d93d21f2dd4, type: 3}
 --- !u!1 &176876646
@@ -974,7 +974,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
         m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
-        m_MethodName: EndOfTurn
+        m_MethodName: TurnEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1374,7 +1374,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
         m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
-        m_MethodName: EndOfTurn
+        m_MethodName: TurnEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2178,7 +2178,7 @@ MonoBehaviour:
         m_CallState: 1
       - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
         m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
-        m_MethodName: EndOfTurn
+        m_MethodName: TurnEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2817,7 +2817,7 @@ MonoBehaviour:
         m_CallState: 1
       - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
         m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
-        m_MethodName: EndOfTurn
+        m_MethodName: TurnEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4062,7 +4062,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
         m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
-        m_MethodName: EndOfTurn
+        m_MethodName: TurnEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4208,7 +4208,7 @@ MonoBehaviour:
         m_CallState: 1
       - m_Target: {fileID: 8564076882577645030, guid: 97571006c4347b344881dfde87df13d2, type: 3}
         m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
-        m_MethodName: EndOfTurn
+        m_MethodName: TurnEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4923,7 +4923,7 @@ MonoBehaviour:
   hoverColor: {r: 1, g: 0, b: 0, a: 0}
   bodyRend: {fileID: 14641215}
   selectedColor: {r: 0.40611005, g: 1, b: 0, a: 0}
-  defaultColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 0}
+  defaultColor: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 0}
   ebc: {fileID: 2040074554}
 --- !u!136 &2040074553
 CapsuleCollider:
