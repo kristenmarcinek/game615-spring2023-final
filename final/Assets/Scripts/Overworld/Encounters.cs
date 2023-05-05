@@ -21,7 +21,7 @@ public class Encounters : MonoBehaviour
 
     IEnumerator EncounterCountdown()
     {
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(15);
 
         int encounterNum = Random.Range(1, 3);
 
