@@ -12,6 +12,7 @@ public class MageController : MonoBehaviour
     public int mageDamage = 0;
     public int mageHP = 20;
     public TMP_Text incomingDamageBox;
+    public Animator mageanim;
    // public int incomingDamage;
     
 
@@ -37,6 +38,7 @@ public class MageController : MonoBehaviour
 
         bm.turnPlayerHitMod = mageHitMod;
         bm.ToHit();
+        mageanim.SetTrigger("mageAttack");
         if(bm.attackHits == true)
         {
             mageDamage = Random.Range(1,4);
@@ -59,6 +61,7 @@ public class MageController : MonoBehaviour
     public void MageRangedAttack() {
         bm.turnPlayerHitMod = mageHitMod;
         bm.ToHit();
+        mageanim.SetTrigger("mageRanged");
         if(bm.attackHits == true)
         {
             mageDamage = Random.Range(1,12);
