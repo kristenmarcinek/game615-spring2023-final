@@ -31,39 +31,32 @@ public class EnemyBattleController : MonoBehaviour
 
     public void EnemiesAttack()
     {
-        bm.turnPlayerHitMod = skellyHitMod;
-        Random.Range(1, 3);
-        bm.ToHit();
-        if (bm.attackHits == true)
-        {
-            skellyDamage = Random.Range(1, 6);
-            skellyDamage = skellyDamage + 3;
-            Debug.Log(skellyDamage);
-            int playerNum = Random.Range(1, 4);
-            if (playerNum == 1)
-            {
-                mc.mageHP = mc.mageHP - skellyDamage;
-                print(mc.mageHP);
-            }
+        // bm.turnPlayerHitMod = skellyHitMod;
+        // bm.ToHit();
 
-            if (playerNum == 2)
-            {
-                rc.rogueHP = rc.rogueHP - skellyDamage;
-                print(rc.rogueHP);
-            }
-            if (playerNum == 3)
-            {
-                wc.warriorHP = wc.warriorHP - skellyDamage;
-                print(wc.warriorHP);
-            }
-            bm.attackHits = false;
-            skellyDamage = 0;
-        }
-        else
+        skellyDamage = Random.Range(1, 6);
+        skellyDamage = skellyDamage + 3;
+        Debug.Log(skellyDamage);
+        int playerNum = Random.Range(1, 4);
+        if (playerNum == 1)
         {
-            //player missed
-            skellyDamage = 0;
-            Debug.Log("Miss!");
+            mc.mageHP = mc.mageHP - skellyDamage;
+            print("MAGE HEALTH" + mc.mageHP);
         }
+
+        if (playerNum == 2)
+        {
+            rc.rogueHP = rc.rogueHP - skellyDamage;
+            print("ROGUE HEALTH" + rc.rogueHP);
+        }
+        if (playerNum == 3)
+        {
+            wc.warriorHP = wc.warriorHP - skellyDamage;
+            print("WARRIOR HEALTH" + wc.warriorHP);
+        }
+
+        skellyDamage = 0;
+
+        bm.TurnEnd();
     }
 }
