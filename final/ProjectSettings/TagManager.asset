@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Character
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Characters
   - Water
   - UI
-  - 
+  - glow
   - 
   - 
   - 

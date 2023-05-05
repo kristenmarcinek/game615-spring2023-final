@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class BattleManager : MonoBehaviour
 
     public float initiativeCheck;
     public bool checkIsRunning = false;
+    public GameObject skeletonDefeatText;
     // public bool turnEnd = false;
 
     // Start is called before the first frame update
@@ -208,6 +210,11 @@ public class BattleManager : MonoBehaviour
                 // characterBools = "Third";
             }
         }
+
+        if(ebc.skellyHP <= 0)
+        {
+            StartCoroutine(DefeatSkelly());
+        }
     }
 
     public void ToHit()
@@ -355,7 +362,7 @@ public class BattleManager : MonoBehaviour
             WarriorUI.SetActive(false);
             RogueUI.SetActive(false);
             ebc.EnemiesAttack();
-            
+            yield return new WaitForSeconds(2f);
         }
 
         yield return null;
@@ -389,7 +396,7 @@ public class BattleManager : MonoBehaviour
             WarriorUI.SetActive(false);
             RogueUI.SetActive(false);
             ebc.EnemiesAttack();
-            
+            yield return new WaitForSeconds(2f);
         }
         yield return null;
     }
@@ -422,7 +429,7 @@ public class BattleManager : MonoBehaviour
             WarriorUI.SetActive(false);
             RogueUI.SetActive(false);
             ebc.EnemiesAttack();
-            
+            yield return new WaitForSeconds(2f);
         }
         yield return null;
     }
@@ -455,7 +462,7 @@ public class BattleManager : MonoBehaviour
             WarriorUI.SetActive(false);
             RogueUI.SetActive(false);
             ebc.EnemiesAttack();
-            
+            yield return new WaitForSeconds(2f);
         }
         yield return null;
     }
@@ -475,6 +482,18 @@ public class BattleManager : MonoBehaviour
     public void TurnEnd() 
     {
         initiativeCheck = 0;
+    }
+
+    IEnumerator DefeatSkelly()
+    {
+        skeletonDefeatText.SetActive(true);
+        MageUI.SetActive(false);
+        WarriorUI.SetActive(false);
+        RogueUI.SetActive(false);
+        yield return new WaitForSeconds(5f);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.LoadScene(sceneName:"ForestScene");
     }
 
     // IEnumerator EndOfTurn()

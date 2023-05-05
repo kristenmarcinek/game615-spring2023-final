@@ -4,12 +4,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public int initiativeNumber = 0;
     public SelectionScript selectedUnit;
     public GameObject cannotRunText;
+    public MageController mc;
+    public WarriorController wc;
+    public RogueController rc;
+    public EnemyBattleController ebc;
+    public TextMeshProUGUI rogueHPText;
+    public TextMeshProUGUI warriorHPText;
+    public TextMeshProUGUI mageHPText;
+    public TextMeshProUGUI enemyHPText;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +29,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemyHPText.text = "Skeleton " + ebc.skellyHP.ToString() + "/60";
+        rogueHPText.text = "Rogue " + rc.rogueHP.ToString() + "/30";
+        mageHPText.text = "Mage " + mc.mageHP.ToString() + "/20";
+        warriorHPText.text = "Warrior " + wc.warriorHP.ToString() + "/40";
+
         // if (Input.GetMouseButtonDown(0))
         // {
         //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -57,6 +71,8 @@ public class GameManager : MonoBehaviour
         }
 
         if(runNum == 2) {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             SceneManager.LoadScene(sceneName:"ForestScene");
         }
     }

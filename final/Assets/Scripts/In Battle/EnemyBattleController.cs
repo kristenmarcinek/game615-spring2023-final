@@ -15,6 +15,7 @@ public class EnemyBattleController : MonoBehaviour
     public int skellyHP = 60;
     public int skellyHitMod = 30;
     public int skellyDamage;
+    public GameObject skellyAttackText;
 
     // Start is called before the first frame update
     void Start()
@@ -33,11 +34,12 @@ public class EnemyBattleController : MonoBehaviour
     {
         // bm.turnPlayerHitMod = skellyHitMod;
         // bm.ToHit();
-
+        StartCoroutine(SkellyAttackAnnouncement());
         skellyDamage = Random.Range(1, 6);
         skellyDamage = skellyDamage + 3;
         Debug.Log(skellyDamage);
         int playerNum = Random.Range(1, 4);
+
         if (playerNum == 1)
         {
             mc.mageHP = mc.mageHP - skellyDamage;
@@ -58,5 +60,11 @@ public class EnemyBattleController : MonoBehaviour
         skellyDamage = 0;
 
         bm.TurnEnd();
+    }
+
+    IEnumerator SkellyAttackAnnouncement() {
+        skellyAttackText.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        skellyAttackText.SetActive(false);
     }
 }
