@@ -3,11 +3,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public int initiativeNumber = 0;
     public SelectionScript selectedUnit;
+    public GameObject cannotRunText;
 
     // Start is called before the first frame update
     void Start()
@@ -44,5 +46,24 @@ public class GameManager : MonoBehaviour
     {
         initiativeNumber = Random.Range(1, 20);
         Debug.Log(initiativeNumber);
+    }
+
+    public void RunAway() 
+    {
+        int runNum = Random.Range(1, 3);
+
+        if(runNum == 1) {
+            StartCoroutine(CannotRun());
+        }
+
+        if(runNum == 2) {
+            SceneManager.LoadScene(sceneName:"ForestScene");
+        }
+    }
+
+    IEnumerator CannotRun() {
+        cannotRunText.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        cannotRunText.SetActive(false);
     }
 }
