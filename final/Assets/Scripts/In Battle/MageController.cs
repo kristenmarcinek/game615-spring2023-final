@@ -13,12 +13,16 @@ public class MageController : MonoBehaviour
     public int mageHP = 20;
     public TMP_Text incomingDamageBox;
     public Animator mageanim;
+    public GameObject fireball;
+    public GameObject skelly;
+    public GameObject fireballObj;
    // public int incomingDamage;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        // fireball.SetActive(false);
         // gm.Initiative();
 
         // playerInitiativeNumber = gm.initiativeNumber - 5;
@@ -64,6 +68,7 @@ public class MageController : MonoBehaviour
         mageanim.SetTrigger("mageRanged");
         if(bm.attackHits == true)
         {
+            StartCoroutine(FireballAnim());
             mageDamage = Random.Range(1,12);
             mageDamage = mageDamage + 5;
             Debug.Log(mageDamage);
@@ -97,5 +102,14 @@ public class MageController : MonoBehaviour
 
 
   //  }
+
+    IEnumerator FireballAnim ()
+    {
+        fireballObj = Instantiate(fireball, skelly.transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(2f);
+
+        Object.Destroy(fireballObj);
+    }
 }
 
