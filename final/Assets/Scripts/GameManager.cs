@@ -19,17 +19,30 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI warriorHPText;
     public TextMeshProUGUI mageHPText;
     public TextMeshProUGUI enemyHPText;
+    public TextMeshProUGUI necromancerHPText;
+    public GameObject IntroTextObj;
+    public bool introShown;
+
+    private void Awake() {
+        DontDestroyOnLoad(this.gameObject);    
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        introShown = true;
+        IntroTextObj.SetActive(true);
+        if(introShown) 
+        {
+            StartCoroutine(IntroShown());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         enemyHPText.text = "Skeleton " + ebc.skellyHP.ToString() + "/60";
+        necromancerHPText.text = "Necromancer " + ebc.skellyHP.ToString() + "/80";
         rogueHPText.text = "Rogue " + rc.rogueHP.ToString() + "/30";
         mageHPText.text = "Mage " + mc.mageHP.ToString() + "/20";
         warriorHPText.text = "Warrior " + wc.warriorHP.ToString() + "/40";
@@ -81,5 +94,27 @@ public class GameManager : MonoBehaviour
         cannotRunText.SetActive(true);
         yield return new WaitForSeconds(3f);
         cannotRunText.SetActive(false);
+    }
+
+    IEnumerator IntroShown()
+    {
+        yield return new WaitForSeconds(20f);
+        IntroTextObj.SetActive(false);
+        introShown = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.LoadScene(sceneName:"ForestScene");
+    }
+
+    public void Continue()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.LoadScene(sceneName:"ForestScene");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

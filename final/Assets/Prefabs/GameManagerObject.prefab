@@ -45,3 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initiativeNumber: 0
+  selectedUnit: {fileID: 0}
+  cannotRunText: {fileID: 0}
+  mc: {fileID: 0}
+  wc: {fileID: 0}
+  rc: {fileID: 0}
+  ebc: {fileID: 0}
+  rogueHPText: {fileID: 0}
+  warriorHPText: {fileID: 0}
+  mageHPText: {fileID: 0}
+  enemyHPText: {fileID: 0}
+  necromancerHPText: {fileID: 0}
