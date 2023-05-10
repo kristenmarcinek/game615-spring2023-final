@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI mageHPText;
     public TextMeshProUGUI enemyHPText;
     public TextMeshProUGUI necromancerHPText;
+    public BattleManager bm;
+    public TextMeshProUGUI SkellyDeaths;
+
     
 
     private void Awake() {
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
         rogueHPText.text = "Rogue " + rc.rogueHP.ToString() + "/30";
         mageHPText.text = "Mage " + mc.mageHP.ToString() + "/20";
         warriorHPText.text = "Warrior " + wc.warriorHP.ToString() + "/40";
+        
+        SkellyDeaths.text = bm.skellyDead.ToString() + "/4 Skeletons Defeated";
 
         // if (Input.GetMouseButtonDown(0))
         // {

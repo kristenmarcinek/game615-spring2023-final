@@ -34,6 +34,8 @@ public class BattleManager : MonoBehaviour
     public float initiativeCheck;
     public bool checkIsRunning = false;
     public GameObject skeletonDefeatText;
+
+    public int skellyDead;
     // public bool turnEnd = false;
 
     // Start is called before the first frame update
@@ -493,6 +495,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        skellyDead = skellyDead + 1;
         SceneManager.LoadScene(sceneName:"ForestScene");
     }
 
