@@ -21,19 +21,25 @@ public class Encounters : MonoBehaviour
 
     IEnumerator EncounterCountdown()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(7f);
 
-        int encounterNum = Random.Range(1, 3);
+        int encounterNum = Random.Range(1, 4);
 
         if(encounterNum == 1)
         {
-            print(encounterNum);
+            print("encounterNum " + encounterNum);
             StartCoroutine(EncounterCountdown());
         }
 
         if(encounterNum == 2)
         {
-            print(encounterNum);
+            print("encounterNum " + encounterNum);
+            SceneManager.LoadScene(sceneName:"BattleScene");
+        }
+
+        if(encounterNum == 3)
+        {
+            print("encounterNum " + encounterNum);
             SceneManager.LoadScene(sceneName:"BattleScene");
         }
     }

@@ -20,8 +20,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI mageHPText;
     public TextMeshProUGUI enemyHPText;
     public TextMeshProUGUI necromancerHPText;
-    public GameObject IntroTextObj;
-    public bool introShown;
+    
 
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);    
@@ -30,12 +29,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        introShown = true;
-        IntroTextObj.SetActive(true);
-        if(introShown) 
-        {
-            StartCoroutine(IntroShown());
-        }
+        
     }
 
     // Update is called once per frame
@@ -96,15 +90,7 @@ public class GameManager : MonoBehaviour
         cannotRunText.SetActive(false);
     }
 
-    IEnumerator IntroShown()
-    {
-        yield return new WaitForSeconds(20f);
-        IntroTextObj.SetActive(false);
-        introShown = false;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        SceneManager.LoadScene(sceneName:"ForestScene");
-    }
+    
 
     public void Continue()
     {
@@ -117,4 +103,5 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
 }
