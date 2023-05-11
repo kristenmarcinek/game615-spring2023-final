@@ -5,41 +5,21 @@ using UnityEngine;
 public class Initiative : MonoBehaviour
 {
     public GameManager gm;
-    //public int playerInitiativeNumber = 0;
-    //public int enemyInitiativeNumber = 0;
-    public int initiativeNumber;
+    public int initiativeNumber = 0;
+    public bool activeTurn = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (this.gameObject.tag == "Player") {
-            PlayerInitiative();
-        }
+        gm.Initiative();
 
-        if (this.gameObject.tag == "Enemy") {
-            EnemyInitiative();
-        }
+        initiativeNumber = gm.initiativeNumber;
+        Debug.Log(initiativeNumber);
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    public void PlayerInitiative()
-    {
-        gm.Initiative();
-
-        initiativeNumber = gm.initiativeNumber;
-        Debug.Log(initiativeNumber);
-    }
-
-    public void EnemyInitiative() 
-    {
-        gm.Initiative();
-
-        initiativeNumber = gm.initiativeNumber;
-        Debug.Log(initiativeNumber);
     }
 }

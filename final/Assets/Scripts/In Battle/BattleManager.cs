@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
     public GameManager gm;
-    Initiative inOrder;
+    //Initiative inOrder;
 
     public bool toHit = false;
 
@@ -22,23 +23,45 @@ public class BattleManager : MonoBehaviour
     public MageController mc;
     public WarriorController wc;
     public RogueController rc;
+    public EnemyBattleController ebc;
     public float turnTimer;
-    string characterBools = "First";
+    // string characterBools = "First";
+    public GameObject MageUI;
+    public GameObject RogueUI;
+    public GameObject WarriorUI;
+    GameObject x;
 
-    //public float initiativeCheck = 0;
+    public float initiativeCheck;
+    public bool checkIsRunning = false;
+    public GameObject skeletonDefeatText;
+
+    public int skellyDead;
+    // public bool turnEnd = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        initiativeCheck = 15;
+
+        MageUI = GameObject.Find("MageUI");
+        RogueUI = GameObject.Find("RogueUI");
+        WarriorUI = GameObject.Find("WarriorUI");
+
+        MageUI.SetActive(false);
+        WarriorUI.SetActive(false);
+        RogueUI.SetActive(false);
+
         hitBase = 50;
         turnPlayerHitMod = 40;
         //selectedEnemyDodge = 20;
         attackHits = false;
 
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("Enemy");
-        for (int i = 0; i < characters.Length; i++) {
-            Initiative inOrder = characters[i].GetComponent<Initiative>();
-            initiatives = characters.OrderByDescending(x => inOrder.initiativeNumber).ToList();
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+        for (int i = 0; i < characters.Length; i++)
+        {
+            //Initiative inOrder = characters[i].GetComponent<Initiative>();
+            x = characters[i];
+            initiatives = characters.OrderByDescending(x => x.GetComponent<Initiative>().initiativeNumber).ToList();
         }
 
         foreach (GameObject i in initiatives)
@@ -64,84 +87,428 @@ public class BattleManager : MonoBehaviour
         // }
 
         // initiatives.Sort(SortByInitiative);
-        
 
-        switch(characterBools) {
-            case "First":
-                initiatives[0].active = true;
-                initiatives[1].active = false;
-                initiatives[2].active = false;
-                initiatives[3].active = false;
-                break;
-            case "Second":
-                initiatives[0].active = false;
-                initiatives[1].active = true;
-                initiatives[2].active = false;
-                initiatives[3].active = false;
-                break;
-            case "Third":
-                initiatives[0].active = false;
-                initiatives[1].active = false;
-                initiatives[2].active = true;
-                initiatives[3].active = false;
-                break;
-            case "Fourth":
-                initiatives[0].active = false;
-                initiatives[1].active = false;
-                initiatives[2].active = false;
-                initiatives[3].active = true;
-                break;
-        }
+        initiatives[0].GetComponent<Initiative>().activeTurn = true;
+        initiatives[1].GetComponent<Initiative>().activeTurn = false;
+        initiatives[2].GetComponent<Initiative>().activeTurn = false;
+        initiatives[3].GetComponent<Initiative>().activeTurn = false;
+        print(initiatives[0].gameObject.name + " the name");
+        print(initiatives[0].GetComponent<Initiative>().activeTurn + "first turn active?");
+
+        // switch (characterBools)
+        // {
+        //     case "First":
+        //         initiatives[0].GetComponent<Initiative>().activeTurn = true;
+        //         print("wooooo " + initiatives[0].GetComponent<Initiative>().GetComponent<Initiative>().activeTurn);
+        //         initiatives[1].GetComponent<Initiative>().activeTurn = false;
+        //         initiatives[2].GetComponent<Initiative>().activeTurn = false;
+        //         initiatives[3].GetComponent<Initiative>().activeTurn = false;
+        //         break;
+        //     case "Second":
+        //         initiatives[0].GetComponent<Initiative>().activeTurn = false;
+        //         initiatives[1].GetComponent<Initiative>().activeTurn = true;
+        //         initiatives[2].GetComponent<Initiative>().activeTurn = false;
+        //         initiatives[3].GetComponent<Initiative>().activeTurn = false;
+        //         break;
+        //     case "Third":
+        //         initiatives[0].GetComponent<Initiative>().activeTurn = false;
+        //         initiatives[1].GetComponent<Initiative>().activeTurn = false;
+        //         initiatives[2].GetComponent<Initiative>().activeTurn = true;
+        //         initiatives[3].GetComponent<Initiative>().activeTurn = false;
+        //         break;
+        //     case "Fourth":
+        //         initiatives[0].GetComponent<Initiative>().activeTurn = false;
+        //         initiatives[1].GetComponent<Initiative>().activeTurn = false;
+        //         initiatives[2].GetComponent<Initiative>().activeTurn = false;
+        //         initiatives[3].GetComponent<Initiative>().activeTurn = true;
+        //         break;
+        // }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        // StartCoroutine(TurnOrder());
+
+        if (initiatives[0].GetComponent<Initiative>().activeTurn)
+        {
+            // print("This coroutine worked?");
+            checkIsRunning = true;
+            StartTimer();
+            // print(initiativeCheck + "why is it 0");
+
+            StartCoroutine(FirstTurn());
+
+            if (initiativeCheck <= 0)
+            {
+                // print("Checking coroutines");
+                StopCoroutine(FirstTurn());
+                checkIsRunning = false;
+                initiativeCheck = 15;
+                initiatives[0].GetComponent<Initiative>().activeTurn = false;
+                initiatives[1].GetComponent<Initiative>().activeTurn = true;
+                // print("first turn is " + initiatives[0].GetComponent<Initiative>().activeTurn);
+                // print("second turn is " + initiatives[1].GetComponent<Initiative>().activeTurn);
+                // characterBools = "Second";
+            }
+        }
+
+        if (initiatives[1].GetComponent<Initiative>().activeTurn)
+        {
+            // print("Second coroutine");
+            checkIsRunning = true;
+            StartTimer();
+
+            StartCoroutine(SecondTurn());
+
+            if (initiativeCheck <= 0)
+            {
+                StopCoroutine(SecondTurn());
+                checkIsRunning = false;
+                initiativeCheck = 15;
+                initiatives[1].GetComponent<Initiative>().activeTurn = false;
+                initiatives[2].GetComponent<Initiative>().activeTurn = true;
+                // characterBools = "Third";
+            }
+        }
+
+        if (initiatives[2].GetComponent<Initiative>().activeTurn)
+        {
+            // print("Third coroutine");
+            checkIsRunning = true;
+            StartTimer();
+
+            StartCoroutine(ThirdTurn());
+
+            if (initiativeCheck <= 0)
+            {
+                StopCoroutine(ThirdTurn());
+                checkIsRunning = false;
+                initiativeCheck = 15;
+                initiatives[2].GetComponent<Initiative>().activeTurn = false;
+                initiatives[3].GetComponent<Initiative>().activeTurn = true;
+                // characterBools = "Third";
+            }
+        }
+
+        if (initiatives[3].GetComponent<Initiative>().activeTurn)
+        {
+            // print("Fourth coroutine");
+            checkIsRunning = true;
+            StartTimer();
+
+            StartCoroutine(FourthTurn());
+
+            if (initiativeCheck <= 0)
+            {
+                StopCoroutine(FourthTurn());
+                checkIsRunning = false;
+                initiativeCheck = 15;
+                initiatives[3].GetComponent<Initiative>().activeTurn = false;
+                initiatives[0].GetComponent<Initiative>().activeTurn = true;
+                // characterBools = "Third";
+            }
+        }
+
+        if(ebc.skellyHP <= 0)
+        {
+            StartCoroutine(DefeatSkelly());
+        }
     }
 
-    public void ToHit() {
+    public void ToHit()
+    {
         print(this.gm.selectedUnit.ebc.enemyDodge);
         hitChance = hitBase + turnPlayerHitMod - this.gm.selectedUnit.ebc.enemyDodge;
         print(hitChance);
         hitRoll = Random.Range(1, 100);
         if (hitRoll <= hitChance)
-            {
-                attackHits = true;
-            }
+        {
+            attackHits = true;
+        }
         else
-            {
-                attackHits = false;
-            }
-        
+        {
+            attackHits = false;
+        }
+
         Debug.Log(attackHits);
     }
 
-    IEnumerator TurnOrder() {
+    // IEnumerator TurnOrder() {
+    //     if(characterBools.Contains("First")) {
+    //         if(initiatives[0].gameObject.name == "MageControllerObject") {
+    //             MageUI.SetActive(true);
+    //             WarriorUI.SetActive(false);
+    //             RogueUI.SetActive(false);
+    //         }
 
-        if(characterBools.Contains("First")) {
-            // stuff here
-            characterBools = "Second";
-        }
-        
-        else if(characterBools.Contains("Second")) {
-            // stuff here
-            characterBools = "Third";
+    //         if(initiatives[0].gameObject.name == "WarriorControllerObject") {
+    //             MageUI.SetActive(false);
+    //             WarriorUI.SetActive(true);
+    //             RogueUI.SetActive(false);
+    //         }
+
+    //         if(initiatives[0].gameObject.name == "RogueControllerObject") {
+    //             MageUI.SetActive(false);
+    //             WarriorUI.SetActive(false);
+    //             RogueUI.SetActive(true);
+    //         }
+    //         initiatives[0].GetComponent<Initiative>().activeTurn = false;
+    //         characterBools = "Second";
+    //     }
+
+    //     else if(characterBools.Contains("Second")) {
+    //         if(initiatives[1].gameObject.name == "MageControllerObject") {
+    //             MageUI.SetActive(true);
+    //             WarriorUI.SetActive(false);
+    //             RogueUI.SetActive(false);
+    //         }
+
+    //         if(initiatives[1].gameObject.name == "WarriorControllerObject") {
+    //             MageUI.SetActive(false);
+    //             WarriorUI.SetActive(true);
+    //             RogueUI.SetActive(false);
+    //         }
+
+    //         if(initiatives[1].gameObject.name == "RogueControllerObject") {
+    //             MageUI.SetActive(false);
+    //             WarriorUI.SetActive(false);
+    //             RogueUI.SetActive(true);
+    //         }
+
+    //         initiatives[1].GetComponent<Initiative>().activeTurn = false;
+    //         characterBools = "Third";
+    //     }
+
+    //     else if(characterBools.Contains("Third")) {
+    //         if(initiatives[2].gameObject.name == "MageControllerObject") {
+    //             MageUI.SetActive(true);
+    //             WarriorUI.SetActive(false);
+    //             RogueUI.SetActive(false);
+    //         }
+
+    //         if(initiatives[2].gameObject.name == "WarriorControllerObject") {
+    //             MageUI.SetActive(false);
+    //             WarriorUI.SetActive(true);
+    //             RogueUI.SetActive(false);
+    //         }
+
+    //         if(initiatives[2].gameObject.name == "RogueControllerObject") {
+    //             MageUI.SetActive(false);
+    //             WarriorUI.SetActive(false);
+    //             RogueUI.SetActive(true);
+    //         }
+
+    //         initiatives[2].GetComponent<Initiative>().activeTurn = false;
+    //         characterBools = "Fourth";
+    //     }
+
+    //     else if(characterBools.Contains("Fourth")) {
+    //         if(initiatives[3].gameObject.name == "MageControllerObject") {
+    //             MageUI.SetActive(true);
+    //             WarriorUI.SetActive(false);
+    //             RogueUI.SetActive(false);
+    //         }
+
+    //         if(initiatives[3].gameObject.name == "WarriorControllerObject") {
+    //             MageUI.SetActive(false);
+    //             WarriorUI.SetActive(true);
+    //             RogueUI.SetActive(false);
+    //         }
+
+    //         if(initiatives[3].gameObject.name == "RogueControllerObject") {
+    //             MageUI.SetActive(false);
+    //             WarriorUI.SetActive(false);
+    //             RogueUI.SetActive(true);
+    //         }
+
+    //         initiatives[3].GetComponent<Initiative>().activeTurn = false;
+    //         characterBools = "First";
+    //     }
+
+    //     else {
+    //        StopCoroutine(TurnOrder());
+    //     }
+
+    //     yield return new WaitForSeconds(15.0f);
+    // }
+
+    IEnumerator FirstTurn()
+    {
+        if (initiatives[0].gameObject.name == "MageControllerObject")
+        {
+            MageUI.SetActive(true);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
         }
 
-        else if(characterBools.Contains("Third")) {
-            // stuff here
-            characterBools = "Fourth";
+        if (initiatives[0].gameObject.name == "WarriorControllerObject")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(true);
+            RogueUI.SetActive(false);
         }
 
-        else if(characterBools.Contains("Fourth")) {
-            // stuff here
-            characterBools = "First";
+        if (initiatives[0].gameObject.name == "RogueControllerObject")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(true);
+        }
+         if (initiatives[0].gameObject.name == "Skelly")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+            ebc.EnemiesAttack();
+            yield return new WaitForSeconds(2f);
         }
 
-        else {
-            // ends battle
-        }
-        yield return new WaitForSeconds(15);
+        yield return null;
     }
+
+    IEnumerator SecondTurn()
+    {
+        if (initiatives[1].gameObject.name == "MageControllerObject")
+        {
+            MageUI.SetActive(true);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+        }
+
+        if (initiatives[1].gameObject.name == "WarriorControllerObject")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(true);
+            RogueUI.SetActive(false);
+        }
+
+        if (initiatives[1].gameObject.name == "RogueControllerObject")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(true);
+        }
+         if (initiatives[1].gameObject.name == "Skelly")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+            ebc.EnemiesAttack();
+            yield return new WaitForSeconds(2f);
+        }
+        yield return null;
+    }
+
+    IEnumerator ThirdTurn()
+    {
+        if (initiatives[2].gameObject.name == "MageControllerObject")
+        {
+            MageUI.SetActive(true);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+        }
+
+        if (initiatives[2].gameObject.name == "WarriorControllerObject")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(true);
+            RogueUI.SetActive(false);
+        }
+
+        if (initiatives[2].gameObject.name == "RogueControllerObject")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(true);
+        }
+         if (initiatives[2].gameObject.name == "Skelly")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+            ebc.EnemiesAttack();
+            yield return new WaitForSeconds(2f);
+        }
+        yield return null;
+    }
+
+    IEnumerator FourthTurn()
+    {
+        if (initiatives[3].gameObject.name == "MageControllerObject")
+        {
+            MageUI.SetActive(true);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+        }
+
+        if (initiatives[3].gameObject.name == "WarriorControllerObject")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(true);
+            RogueUI.SetActive(false);
+        }
+
+        if (initiatives[3].gameObject.name == "RogueControllerObject")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(true);
+        }
+         if (initiatives[3].gameObject.name == "Skelly")
+        {
+            MageUI.SetActive(false);
+            WarriorUI.SetActive(false);
+            RogueUI.SetActive(false);
+            ebc.EnemiesAttack();
+            yield return new WaitForSeconds(2f);
+        }
+        yield return null;
+    }
+
+    public void StartTimer()
+    {
+        if (checkIsRunning)
+        {
+            if (initiativeCheck > 0)
+            {
+                initiativeCheck -= Time.deltaTime;
+                // print(initiativeCheck + " timer");
+            }
+        }
+    }
+
+    public void TurnEnd() 
+    {
+        initiativeCheck = 0;
+    }
+
+    IEnumerator DefeatSkelly()
+    {
+        skeletonDefeatText.SetActive(true);
+        MageUI.SetActive(false);
+        WarriorUI.SetActive(false);
+        RogueUI.SetActive(false);
+        yield return new WaitForSeconds(5f);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        skellyDead = skellyDead + 1;
+        SceneManager.LoadScene(sceneName:"ForestScene");
+    }
+
+    // IEnumerator EndOfTurn()
+    // {
+    //     turnEnd = true;
+
+    //     yield return new WaitForSeconds(0.5f);
+
+    //     turnEnd = false;
+
+    //     yield return null;
+
+    //     print("Clicked button");
+    // }
 }

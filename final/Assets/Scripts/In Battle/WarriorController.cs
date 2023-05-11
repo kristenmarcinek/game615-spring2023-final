@@ -6,10 +6,11 @@ public class WarriorController : MonoBehaviour
 {
     public GameManager gm;
     // public int playerInitiativeNumber = 0;
-    public int warriorHealth = 40;
+    public int warriorHP = 40;
     public BattleManager bm;
     public int warriorDamage = 0;
     public int warriorHitMod = 30;
+    public Animator warrioranim;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class WarriorController : MonoBehaviour
     public void WarriorAttack() {
         bm.turnPlayerHitMod = warriorHitMod;
         bm.ToHit();
+        warrioranim.SetTrigger("warriorAttack");
 
         if(bm.attackHits == true)
         {
@@ -52,6 +54,7 @@ public class WarriorController : MonoBehaviour
     public void WarriorHeavyAttack() {
         bm.turnPlayerHitMod = warriorHitMod - 20;
         bm.ToHit();
+        warrioranim.SetTrigger("warriorAttack");
 
         if(bm.attackHits == true)
         {

@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RogueController : MonoBehaviour
 {
     public GameManager gm;
     // public int playerInitiativeNumber = 0;
-    public int rogueHealth = 30;
+    public int rogueHP = 30;
     public int rogueHitMod = 45;
     public BattleManager bm;
     public float rogueDamage = 0;
     public int rogueDamageInt = 0;
     public float[] multipliers = {0, .5f, 2, 3};
     public float damageMultiplier;
+    public Animator rogueanim;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +28,16 @@ public class RogueController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(rogueHP <= 0)
+        {
+            SceneManager.LoadScene(sceneName:"GameOver");
+        }
     }
 
     public void RogueAttack() {
         bm.turnPlayerHitMod = rogueHitMod;
         bm.ToHit();
+        rogueanim.SetTrigger("rogueAttack");
 
         if(bm.attackHits == true)
         {
@@ -57,6 +63,7 @@ public class RogueController : MonoBehaviour
     public void RogueLuckyStrike() {
         bm.turnPlayerHitMod = rogueHitMod;
         bm.ToHit();
+        rogueanim.SetTrigger("rogueAttack");
 
         if(bm.attackHits == true)
         {
