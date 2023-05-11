@@ -1,6 +1,6 @@
 # game615-spring2023-final
 
-
+Our one page 'hype doc' is in the repository!
 
 
 Attributions:
